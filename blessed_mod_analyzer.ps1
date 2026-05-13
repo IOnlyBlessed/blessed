@@ -5,7 +5,7 @@ Clear-Host
 Write-Host "Made by Blessed - discord 8j0w for Questions or Bugs`n" -ForegroundColor Cyan 
 
 $esc = [char]27
-$red = "$esc[38;2;255;0;0m"
+$cyan = "$esc[38;2;0;255;255m"
 $reset = "$esc[0m"
 
 Write-Host @"
@@ -22,7 +22,7 @@ Write-Host @"
 ██║╚██╔╝██║██║   ██║██║  ██║    ██╔══██║██║╚██╗██║██╔══██║██║    ╚██╔╝   ███╔╝  ██╔══╝  ██╔══██╗
 ██║ ╚═╝ ██║╚██████╔╝██████╔╝    ██║  ██║██║ ╚████║██║  ██║███████╗██║   ███████╗███████╗██║  ██║
 ╚═╝     ╚═╝ ╚═════╝ ╚═════╝     ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝╚═╝   ╚══════╝╚══════╝╚═╝  ╚═╝
-"@ | ForEach-Object { Write-Host "$red$_$reset" }
+"@ | ForEach-Object { Write-Host "$cyan$_$reset" }
 
 $lineWidth = 100
 Write-Host "Blessed Mod Analyzer".PadLeft(($lineWidth + 34) / 2) -ForegroundColor Cyan
