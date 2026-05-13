@@ -670,5 +670,5 @@ Write-Host ""
 
 Write-Sep
 
-Write-Host "`nPress any key to exit..." -ForegroundColor DarkGray
+Write-Host "`nPress any key to exit..." -ForegroundColor White
 $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown") 
