@@ -57,8 +57,8 @@ Write-Host ""
 
 $javaProcesses = Get-Process -Name javaw -ErrorAction SilentlyContinue
 if ($javaProcesses.Count -eq 0) {
-    Write-Host "  [!] No javaw.exe processes found" -ForegroundColor Yellow
-    Write-Host "  [i] Make sure Minecraft is running`n" -ForegroundColor Yellow
+    Write-Host "  [!] No javaw.exe processes found" -ForegroundColor Red
+    Write-Host "  [i] Make sure Minecraft is running`n" -ForegroundColor Red
 } else {
     Write-Host "  [i] Scanning $($javaProcesses.Count) Java process(es)...`n" -ForegroundColor White
     $foundInjection = $false
@@ -445,7 +445,7 @@ $spinner = @("|","/","-","\"); $totalMods = $jarFiles.Count
 Write-Host "Scanning $totalMods mods..." -ForegroundColor White
 for ($i = 0; $i -lt $jarFiles.Count; $i++) {
     $file = $jarFiles[$i]
-    Write-Host "`r[$($spinner[$i % 4])] Scanning mods: $($i+1) / $totalMods" -ForegroundColor Magenta -NoNewline
+    Write-Host "`r[$($spinner[$i % 4])] Scanning mods: $($i+1) / $totalMods" -ForegroundColor Green -NoNewline
     $hash = Get-SHA1 $file.FullName
     $actualSize = $file.Length; $actualSizeKB = [math]::Round($actualSize/1KB, 2)
     $zone = Get-ZoneIdentifier $file.FullName
