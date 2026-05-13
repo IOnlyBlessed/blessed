@@ -2,7 +2,7 @@ here than change the name [Console]::OutputEncoding = [System.Text.Encoding]::UT
 $OutputEncoding = [System.Text.Encoding]::UTF8
 Clear-Host
 
-Write-Host "Made by Blessed - discord 8j0w for Questions or Bugs`n" -ForegroundColor Red 
+Write-Host "Made by Blessed - discord 8j0w for Questions or Bugs`n" -ForegroundColor Cyan 
 
 $esc = [char]27
 $red = "$esc[38;2;255;0;0m"
@@ -25,7 +25,7 @@ Write-Host @"
 "@ | ForEach-Object { Write-Host "$red$_$reset" }
 
 $lineWidth = 100
-Write-Host "YarpLetapStan's Mod Analyzer V6.0".PadLeft(($lineWidth + 34) / 2) -ForegroundColor Cyan
+Write-Host "Blessed Mod Analyzer".PadLeft(($lineWidth + 34) / 2) -ForegroundColor Cyan
 Write-Host ("━" * $lineWidth) -ForegroundColor Cyan
 Write-Host ""
 
@@ -498,7 +498,7 @@ for ($i = 0; $i -lt $unknownMods.Count; $i++) {
 }
 
 $counter = 0
-$tempDir = Join-Path $env:TEMP "yarpletapstanmodanalyzer"
+$tempDir = Join-Path $env:TEMP "blessedmodanalyzer"
 try {
     if (Test-Path $tempDir) { Remove-Item -Recurse -Force $tempDir }
     New-Item -ItemType Directory -Path $tempDir | Out-Null
