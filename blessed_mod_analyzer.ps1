@@ -8,7 +8,6 @@ $esc = [char]27
 $cyan = "$esc[38;2;0;255;255m"
 $reset = "$esc[0m"
 
-# Enhanced ASCII Art - Fully Cyan
 $art = @"
 ╔════════════════════════════════════════════════════════════════════════════════════════════════════╗
 ║                                                                                                    ║
@@ -45,7 +44,7 @@ Write-Host ("━" * $lineWidth) -ForegroundColor Cyan
 Write-Host ""
 
 Write-Host "┌─────────────────────────────────────────────────────────────────────────────────┐" -ForegroundColor Cyan
-Write-Host "│  📁 MODS FOLDER SELECTION                                                      │" -ForegroundColor Cyan
+Write-Host "│  MODS FOLDER SELECTION                                                      │" -ForegroundColor Cyan
 Write-Host "├─────────────────────────────────────────────────────────────────────────────────┤" -ForegroundColor Cyan
 Write-Host "│  Enter path to the mods folder:                                                 │" -ForegroundColor Cyan
 Write-Host "│  (press Enter to use default)                                                   │" -ForegroundColor Cyan
@@ -121,7 +120,7 @@ function Get-Minecraft-Version-From-Mods($modsFolder) {
     }
     if ($mcVersions.Count -gt 0) {
         $best = $mcVersions.GetEnumerator() | Sort-Object -Property @{E={$_.Value};D=$true},@{E={$_.Key};D=$true} | Select-Object -First 1
-        Write-Host "  ✅ Detected Minecraft version: $($best.Key) (from $($best.Value) out of $modsScanned mods)" -ForegroundColor Green
+        Write-Host "  Detected Minecraft version: $($best.Key) (from $($best.Value) out of $modsScanned mods)" -ForegroundColor Green
         Write-Host ""
         return $best.Key
     }
@@ -130,12 +129,12 @@ function Get-Minecraft-Version-From-Mods($modsFolder) {
             $cl = (Get-WmiObject Win32_Process -Filter "ProcessId = $($process.Id)").CommandLine
             foreach ($pat in @('versions[/\\](\d+\.\d+(?:\.\d+)?)[/\\]','-Dminecraft\.version=(\d+\.\d+(?:\.\d+)?)','-Dfabric\.gameVersion=(\d+\.\d+(?:\.\d+)?)','--version\s+(\d+\.\d+(?:\.\d+)?)')) {
                 if ($cl -match $pat) { 
-                    Write-Host "  ✅ Detected Minecraft version from process: $($matches[1])" -ForegroundColor Green
+                    Write-Host "  Detected Minecraft version from process: $($matches[1])" -ForegroundColor Green
                     Write-Host ""
                     return $matches[1] 
                 }
             }
-        } catch { Write-Host "  ⚠️  Warning: Could not read process command line" -ForegroundColor DarkYellow }
+        } catch { Write-Host "  ⚠️   Warning: Could not read process command line" -ForegroundColor DarkYellow }
     }
     Write-Host "  ⚠️  Could not auto-detect Minecraft version from mods." -ForegroundColor Yellow
     $v = Read-Host "  ➤ Enter your Minecraft version (e.g., 1.21, 1.20.1) or press Enter to skip"
@@ -146,7 +145,7 @@ function Get-Minecraft-Version-From-Mods($modsFolder) {
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 if ($minecraftVersion = Get-Minecraft-Version-From-Mods -modsFolder $mods) { 
     Write-Host "┌─────────────────────────────────────────────────────────────────────────────────┐" -ForegroundColor Green
-    Write-Host "│  🎯 Using Minecraft version: $minecraftVersion for filtering" -ForegroundColor Green
+    Write-Host "│  Using Minecraft version: $minecraftVersion for filtering" -ForegroundColor Green
     Write-Host("│" + " " * 81) -ForegroundColor Green
     Write-Host "└─────────────────────────────────────────────────────────────────────────────────┘" -ForegroundColor Green
     Write-Host ""
@@ -420,7 +419,7 @@ $jarFiles = Get-ChildItem -Path $mods -Filter *.jar
 $spinner = @("|","/","-","\"); $totalMods = $jarFiles.Count
 
 Write-Host "┌─────────────────────────────────────────────────────────────────────────────────┐" -ForegroundColor Cyan
-Write-Host "│  🔍 SCANNING MODS                                                              │" -ForegroundColor Cyan
+Write-Host "│  SCANNING MODS                                                              │" -ForegroundColor Cyan
 Write-Host "└─────────────────────────────────────────────────────────────────────────────────┘" -ForegroundColor Cyan
 Write-Host ""
 
@@ -483,7 +482,7 @@ $tempDir = Join-Path $env:TEMP "blessedmodanalyzer"
 try {
     if (Test-Path $tempDir) { Remove-Item -Recurse -Force $tempDir }
     New-Item -ItemType Directory -Path $tempDir | Out-Null
-    Write-Host "`n  🔎 Scanning for cheat strings..." -ForegroundColor White
+    Write-Host "`n  Scanning for cheat strings..." -ForegroundColor White
 
     foreach ($mod in $allModsInfo) {
         $counter++
@@ -535,7 +534,7 @@ try {
             $verifiedMods = $verifiedMods | Where-Object { $_.FileName -ne $mod.FileName }
         }
     }
-} catch { Write-Host "`n  ❌ Error: $($_.Exception.Message)" -ForegroundColor Red
+} catch { Write-Host "`n  Error: $($_.Exception.Message)" -ForegroundColor Red
 } finally { if (Test-Path $tempDir) { Remove-Item -Recurse -Force $tempDir -ErrorAction SilentlyContinue } }
 
 Write-Host "`n  ✅ Scan complete!" -ForegroundColor Green
@@ -584,7 +583,7 @@ if ($verifiedMods.Count -gt 0) {
     foreach ($mod in $verifiedMods) {
         if (($tamperedMods | Where-Object { $_.FileName -eq $mod.FileName }).Count -eq 0 -and ($cheatMods | Where-Object { $_.FileName -eq $mod.FileName }).Count -eq 0) {
             Write-Host "  ✓ " -NoNewline -ForegroundColor Green; Write-Host "$($mod.ModName) " -NoNewline -ForegroundColor White; Write-Host "($($mod.FileName))" -ForegroundColor Green
-            Write-Host "    📦 Size: $($mod.ActualSizeKB) KB" -ForegroundColor Green
+            Write-Host "    ✓ Size: $($mod.ActualSizeKB) KB" -ForegroundColor Green
         }
     }
 } else { Write-Host "  No verified mods found" -ForegroundColor Gray }
@@ -609,8 +608,8 @@ if ($tamperedMods.Count -gt 0) {
         Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host "📄 File: $($mod.FileName)" -ForegroundColor White
         if ($mod.ModName) { Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host "🔧 Mod: $($mod.ModName)" -ForegroundColor Green }
         if ($mod.TamperReason) { Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host "🔬 Reason: $($mod.TamperReason)" -ForegroundColor Red }
-        Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host "💾 Size: $($mod.ActualSizeKB) KB (Expected: $($mod.ExpectedSizeKB) KB)" -ForegroundColor Magenta
-        Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host "📏 Difference: $sign$($mod.SizeDiffKB) KB" -ForegroundColor Red
+        Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host " Size: $($mod.ActualSizeKB) KB (Expected: $($mod.ExpectedSizeKB) KB)" -ForegroundColor Magenta
+        Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host " Difference: $sign$($mod.SizeDiffKB) KB" -ForegroundColor Red
         Write-Host "  ╚══════════════════════════════════════════`n" -ForegroundColor DarkYellow
     }
 } else { Write-Host "  No tampered mods found" -ForegroundColor Gray }
@@ -631,11 +630,11 @@ if ($cheatMods.Count -gt 0) {
         if ($mod.ExpectedSizeKB -gt 0) {
             $sign = if ($mod.SizeDiffKB -gt 0){"+"} else {""}
             Write-Host "  ║ " -NoNewline -ForegroundColor Red
-            if ($mod.SizeDiffKB -eq 0) { Write-Host "💾 Size matches Modrinth: $($mod.ExpectedSizeKB) KB ✓" -ForegroundColor White }
+            if ($mod.SizeDiffKB -eq 0) { Write-Host "Size matches Modrinth: $($mod.ExpectedSizeKB) KB ✓" -ForegroundColor White }
             else {
                 Write-Host "  ║ " -NoNewline -ForegroundColor Red
-                Write-Host "💾 Size: $($mod.FileSizeKB) KB (Expected: $($mod.ExpectedSizeKB) KB) | " -NoNewline -ForegroundColor White
-                Write-Host "📏 Difference: $sign$($mod.SizeDiffKB) KB" -ForegroundColor Red
+                Write-Host "Size: $($mod.FileSizeKB) KB (Expected: $($mod.ExpectedSizeKB) KB) | " -NoNewline -ForegroundColor White
+                Write-Host "Difference: $sign$($mod.SizeDiffKB) KB" -ForegroundColor Red
             }
         }
         Write-Host "  ╚══════════════════════════════════════════" -ForegroundColor Red
