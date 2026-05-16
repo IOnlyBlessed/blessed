@@ -8,123 +8,88 @@ $esc = [char]27
 $cyan = "$esc[38;2;0;255;255m"
 $reset = "$esc[0m"
 
-Write-Host @"
-██████╗ ██╗     ███████╗███████╗███████╗███████╗██████╗
-██╔══██╗██║     ██╔════╝██╔════╝██╔════╝██╔════╝██╔══██╗
-██████╔╝██║     █████╗  ███████╗███████╗█████╗  ██║  ██║
-██╔══██╗██║     ██╔══╝  ╚════██║╚════██║██╔══╝  ██║  ██║
-██████╔╝███████╗███████╗███████║███████║███████╗██████╔╝
-╚═════╝ ╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝╚═════╝
+# Enhanced ASCII Art - Fully Cyan
+$art = @"
+╔════════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                                    ║
+║    ██████╗ ██╗     ███████╗███████╗███████╗███████╗██████╗                                         ║
+║    ██╔══██╗██║     ██╔════╝██╔════╝██╔════╝██╔════╝██╔══██╗                                        ║
+║    ██████╔╝██║     █████╗  ███████╗███████╗█████╗  ██║  ██║                                        ║
+║    ██╔══██╗██║     ██╔══╝  ╚════██║╚════██║██╔══╝  ██║  ██║                                        ║
+║    ██████╔╝███████╗███████╗███████║███████║███████╗██████╔╝                                        ║
+║    ╚═════╝ ╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝╚═════╝                                         ║
+║                                                                                                    ║
+║    ███╗   ███╗ ██████╗ ██████╗      █████╗ ███╗   ██╗ █████╗ ██╗  ██╗   ██╗███████╗███████╗██████╗ ║
+║    ████╗ ████║██╔═══██╗██╔══██╗    ██╔══██╗████╗  ██║██╔══██╗██║  ╚██╗ ██╔╝╚══███╔╝██╔════╝██╔══██╗║
+║    ██╔████╔██║██║   ██║██║  ██║    ███████║██╔██╗ ██║███████║██║   ╚████╔╝   ███╔╝ █████╗  ██████╔╝║
+║    ██║╚██╔╝██║██║   ██║██║  ██║    ██╔══██║██║╚██╗██║██╔══██║██║    ╚██╔╝   ███╔╝  ██╔══╝  ██╔══██╗║
+║    ██║ ╚═╝ ██║╚██████╔╝██████╔╝    ██║  ██║██║ ╚████║██║  ██║███████╗██║   ███████╗███████╗██║  ██║║
+║    ╚═╝     ╚═╝ ╚═════╝ ╚═════╝     ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝╚═╝   ╚══════╝╚══════╝╚═╝  ╚═╝║
+║                                                                                                    ║
+╚════════════════════════════════════════════════════════════════════════════════════════════════════╝
+"@
 
-███╗   ███╗ ██████╗ ██████╗      █████╗ ███╗   ██╗ █████╗ ██╗  ██╗   ██╗███████╗███████╗██████╗
-████╗ ████║██╔═══██╗██╔══██╗    ██╔══██╗████╗  ██║██╔══██╗██║  ╚██╗ ██╔╝╚══███╔╝██╔════╝██╔══██╗
-██╔████╔██║██║   ██║██║  ██║    ███████║██╔██╗ ██║███████║██║   ╚████╔╝   ███╔╝ █████╗  ██████╔╝
-██║╚██╔╝██║██║   ██║██║  ██║    ██╔══██║██║╚██╗██║██╔══██║██║    ╚██╔╝   ███╔╝  ██╔══╝  ██╔══██╗
-██║ ╚═╝ ██║╚██████╔╝██████╔╝    ██║  ██║██║ ╚████║██║  ██║███████╗██║   ███████╗███████╗██║  ██║
-╚═╝     ╚═╝ ╚═════╝ ╚═════╝     ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝╚═╝   ╚══════╝╚══════╝╚═╝  ╚═╝
-"@ | ForEach-Object { Write-Host "$cyan$_$reset" }
+# Display art with cyan color line by line to preserve box
+$art -split "`n" | ForEach-Object { 
+    if ($_.Trim() -ne "") {
+        Write-Host "$cyan$_$reset"
+    }
+}
 
 $lineWidth = 100
-Write-Host "Blessed Mod Analyzer".PadLeft(($lineWidth + 34) / 2) -ForegroundColor Cyan
+Write-Host ""
+Write-Host (" " * 42) -NoNewline
+Write-Host "BLESSED MOD ANALYZER" -ForegroundColor Cyan -BackgroundColor DarkGray
+Write-Host ""
 Write-Host ("━" * $lineWidth) -ForegroundColor Cyan
 Write-Host ""
 
-Write-Host "Enter path to the mods folder: " -NoNewline
-Write-Host "(press Enter to use default)" -ForegroundColor DarkGray
-$mods = Read-Host "PATH"
-Write-Host
+Write-Host "┌─────────────────────────────────────────────────────────────────────────────────┐" -ForegroundColor Cyan
+Write-Host "│  📁 MODS FOLDER SELECTION                                                      │" -ForegroundColor Cyan
+Write-Host "├─────────────────────────────────────────────────────────────────────────────────┤" -ForegroundColor Cyan
+Write-Host "│  Enter path to the mods folder:                                                 │" -ForegroundColor Cyan
+Write-Host "│  (press Enter to use default)                                                   │" -ForegroundColor Cyan
+Write-Host "└─────────────────────────────────────────────────────────────────────────────────┘" -ForegroundColor Cyan
+Write-Host ""
+
+$mods = Read-Host "  ➤ PATH"
 
 if (-not $mods) {
     $mods = "$env:USERPROFILE\AppData\Roaming\.minecraft\mods"
-    Write-Host "Using default path: $mods`n" -ForegroundColor White
+    Write-Host ""
+    Write-Host "  📂 Using default path: $mods" -ForegroundColor Green
+    Write-Host ""
 }
-if (-not (Test-Path $mods -PathType Container)) { Write-Host "Invalid Path!" -ForegroundColor Red; exit 1 }
+if (-not (Test-Path $mods -PathType Container)) { 
+    Write-Host ""
+    Write-Host "  ❌ ERROR: Invalid Path! Please check and try again." -ForegroundColor Red
+    Write-Host ""
+    exit 1 
+}
 
 $process = Get-Process javaw -ErrorAction SilentlyContinue
 if (-not $process) { $process = Get-Process java -ErrorAction SilentlyContinue }
 if ($process) {
     try {
         $elapsed = (Get-Date) - $process.StartTime
-        Write-Host "Minecraft Uptime: $($process.Name) PID $($process.Id) started at $($process.StartTime) and running for $($elapsed.Hours)h $($elapsed.Minutes)m $($elapsed.Seconds)s`n" -ForegroundColor Cyan
+        Write-Host "┌─────────────────────────────────────────────────────────────────────────────────┐" -ForegroundColor Cyan
+        Write-Host "│  🕐 MINECRAFT RUNTIME INFORMATION                                              │" -ForegroundColor Cyan
+        Write-Host "├─────────────────────────────────────────────────────────────────────────────────┤" -ForegroundColor Cyan
+        Write-Host "│  Status: Running                                                               │" -ForegroundColor Green
+        Write-Host "│  Process: $($process.Name) (PID: $($process.Id))                                                         │" -ForegroundColor White
+        Write-Host "│  Started: $($process.StartTime)                                                │" -ForegroundColor White
+        Write-Host "│  Uptime: $($elapsed.Hours)h $($elapsed.Minutes)m $($elapsed.Seconds)s                                                          │" -ForegroundColor Cyan
+        Write-Host "└─────────────────────────────────────────────────────────────────────────────────┘" -ForegroundColor Cyan
+        Write-Host ""
     } catch {}
-}
-
-$sep = "━" * 111
-Write-Host $sep -ForegroundColor Yellow
-Write-Host "JVM ARGUMENTS INJECTION SCANNER" -ForegroundColor Yellow
-Write-Host $sep -ForegroundColor Yellow
-Write-Host ""
-
-$javaProcesses = Get-Process -Name javaw -ErrorAction SilentlyContinue
-if ($javaProcesses.Count -eq 0) {
-    Write-Host "  [!] No javaw.exe processes found" -ForegroundColor Red
-    Write-Host "  [i] Make sure Minecraft is running`n" -ForegroundColor Red
-} else {
-    Write-Host "  [i] Scanning $($javaProcesses.Count) Java process(es)...`n" -ForegroundColor White
-    $foundInjection = $false
-
-    $fabricPatterns = @{
-        "fabric.addMods"="'-Dfabric\.addMods='"; "fabric.loadMods"='-Dfabric\.loadMods='; "fabric.classPathGroups"='-Dfabric\.classPathGroups='; "fabric.gameJarPath"='-Dfabric\.gameJarPath='; "fabric.skipMcProvider"='-Dfabric\.skipMcProvider='; "fabric.development"='-Dfabric\.development='; "fabric.allowUnsupportedVersion"='-Dfabric\.allowUnsupportedVersion='; "fabric.remapClasspathFile"='-Dfabric\.remapClasspathFile='; "fabric.skipIntermediary"='-Dfabric\.skipIntermediary='; "fabric.configDir"='-Dfabric\.configDir='; "fabric.loader.config"='-Dfabric\.loader\.config='; "fabric.log.level"='-Dfabric\.log\.level='; "fabric.debug.dumpClasspath"='-Dfabric\.debug\.dumpClasspath='; "fabric.log.config"='-Dfabric\.log\.config='; "fabric.dli.config"='-Dfabric\.dli\.config='; "fabric.mixin.configs"='-Dfabric\.mixin\.configs='; "fabric.mixin.hotSwap"='-Dfabric\.mixin\.hotSwap='; "fabric.mixin.debug.export"='-Dfabric\.mixin\.debug\.export='; "fabric.mixin.debug.verbose"='-Dfabric\.mixin\.debug\.verbose='; "fabric.gameVersion"='-Dfabric\.gameVersion='; "fabric.forceVersion"='-Dfabric\.forceVersion='; "fabric.autoDetectVersion"='-Dfabric\.autoDetectVersion='; "fabric.launcher.name"='-Dfabric\.launcher\.name='; "fabric.launcher.brand"='-Dfabric\.launcher\.brand='; "fabric.mods.toml.path"='-Dfabric\.mods\.toml\.path='; "fabric.customModList"='-Dfabric\.customModList='; "fabric.resolve.modFiles"='-Dfabric\.resolve\.modFiles='; "fabric.skipDependencyResolution"='-Dfabric\.skipDependencyResolution='; "fabric.loader.entrypoints"='-Dfabric\.loader\.entrypoints='; "fabric.language.providers"='-Dfabric\.language\.providers=';
-        "forge.addMods"='-Dforge\.addMods='; "forge.mods"='-Dforge\.mods='; "fml.coreMods.load"='-Dfml\.coreMods\.load='; "forge.coreMods.dir"='-Dforge\.coreMods\.dir='; "forge.modDir"='-Dforge\.modDir='; "forge.modsDirectories"='-Dforge\.modsDirectories='; "fml.customModList"='-Dfml\.customModList='; "forge.disableModScan"='-Dforge\.disableModScan='; "forge.modList"='-Dforge\.modList='; "forge.forceVersion"='-Dforge\.forceVersion='; "forge.disableUpdateCheck"='-Dforge\.disableUpdateCheck='; "forge.logging.mojang.level"='-Dforge\.logging\.mojang\.level='; "forge.mixin.hotSwap"='-Dforge\.mixin\.hotSwap='; "forge.resourcePack"='-Dforge\.resourcePack='; "forge.defaultResourcePack"='-Dforge\.defaultResourcePack='; "forge.texturePacks"='-Dforge\.texturePacks='; "forge.assetIndex"='-Dforge\.assetIndex='; "forge.assetsDir"='-Dforge\.assetsDir=';
-        "javaSecurityManager"='-Djava\.security\.manager='; "javaSecurityPolicy"='-Djava\.security\.policy='; "bootClasspath"='-Xbootclasspath'; "systemClassLoader"='-Djava\.system\.class\.loader='; "javaClassPath"='-Djava\.class\.path='; "cp"='-cp\s+["''][^"'';]*\.jar';
-        "cheatClientBrand"='-D(client|launcher)\.brand=(Wurst|Aristois|Impact|Kilo|Future|Lambda|Rusher|Konas|Phobos|Salhack|ForgeHax|Mathax|Meteor|Async|Seppuku|Xatz|Wolfram|Huzuni|Jigsaw|Zamorozka|Moon|Rage|Exhibition|Virtue|Novoline|Rekt|Skid|Ares|Abyss|Thunder|Tenacity|Rise|Flux|Gamesense|Intent|Remix|Sight|Vape|Shield|Ghost|Crispy|Inertia)';
-        "optifine"='-Doptifine\.'; "shadersmod"='-Dshaders?\.'; "shaderPack"='-Dshader[sP]ack='; "cheatPattern"='-D(xray|fly|speed|killaura|reach|esp|wallhack|noclip|autoclick|aimbot|triggerbot|antiknockback|nofall|timer|step|fullbright|nightvision|cavefinder)\.'
-    }
-    $cheatClients = @('Wurst','Aristois','Impact','Kilo','Future','Lambda','Rusher','Konas','Phobos','Salhack','ForgeHax','Mathax','Meteor','Async','Seppuku','Xatz','Wolfram','Huzuni','Jigsaw','Zamorozka','Moon','Rage','Exhibition','Virtue','Novoline','Rekt','Skid','Ares','Abyss','Thunder','Tenacity','Rise','Flux','Gamesense','Intent','Remix','Sight','Vape','Shield','Ghost','Crispy','Inertia')
-
-    foreach ($proc in $javaProcesses) {
-        try {
-            $cmdLine = (Get-WmiObject Win32_Process -Filter "ProcessId = $($proc.Id)" -ErrorAction Stop).CommandLine
-            if (-not $cmdLine) { continue }
-            Write-Host "  ┌─ Process: PID $($proc.Id) - $($proc.ProcessName)" -ForegroundColor Green
-            if ($cmdLine -match '^"([^"]+)"') { $cmdLine = $cmdLine.Substring($matches[1].Length + 2).Trim() }
-
-            $detectedPatterns = @(); $suspiciousArgs = @()
-            foreach ($k in $fabricPatterns.Keys) {
-                if ($k -eq "addOpens" -or $k -eq "addExports") { continue }
-                if ($cmdLine -match $fabricPatterns[$k]) {
-                    $detectedPatterns += $k
-                    $suspiciousArgs += ($cmdLine -split '\s+' | Where-Object { $_ -match $fabricPatterns[$k] })
-                }
-            }
-            foreach ($cc in $cheatClients) {
-                if ($cmdLine -match "(?i)\b$cc\b" -and $detectedPatterns -notcontains "CheatClient-$cc") { $detectedPatterns += "CheatClient-$cc" }
-            }
-            if ($cmdLine -match '(%3B|%26%26|%7C%7C|%7C|%60|%24|%3C|%3E)') { $detectedPatterns += "EncodedInjection" }
-
-            if ($detectedPatterns.Count -gt 0) {
-                $foundInjection = $true
-                Write-Host "  ├─ [✗] JVM INJECTION DETECTED`n" -ForegroundColor Red
-                Write-Host "  │  Detected JVM Arguments:" -ForegroundColor Yellow
-                $suspiciousArgs | Select-Object -Unique | ForEach-Object { Write-Host "  │    • $_" -ForegroundColor Magenta }
-                Write-Host "`n  │  Detected Pattern Categories:" -ForegroundColor Yellow
-                $grouped = @{}
-                foreach ($p in $detectedPatterns) {
-                    $t = if ($p -match "^(fabric|forge|javaSecurity|bootClasspath|systemClassLoader|javaClassPath|cp|cheatClient|optifine|shadersmod|shaderPack|cheatPattern|EncodedInjection)") { $matches[1] } else { "other" }
-                    if (-not $grouped[$t]) { $grouped[$t] = @() }
-                    $grouped[$t] += $p
-                }
-                $typeMap = @{ fabric="Fabric Injection"; forge="Forge Injection"; javaSecurity="Security Bypass"; bootClasspath="Classpath Manipulation"; systemClassLoader="Class Loader"; javaClassPath="Class Path"; cp="Classpath (-cp)"; cheatClient="Cheat Client"; optifine="Optifine/Shaders"; shadersmod="Shader Mod"; shaderPack="Shader Pack"; cheatPattern="Cheat Pattern"; EncodedInjection="Encoded Injection"; other="Other" }
-                foreach ($t in $grouped.Keys | Sort-Object) {
-                    Write-Host "  │    └─ $($typeMap[$t])" -ForegroundColor White
-                    $grouped[$t] | ForEach-Object { Write-Host "  │        • $($_ -replace 'CheatClient-','')" -ForegroundColor Red }
-                }
-                Write-Host "`n  └─ ⚠ WARNING: Potential cheat client or mod injection detected!`n" -ForegroundColor Red
-            } else {
-                Write-Host "  └─ [✓] No JVM injection patterns detected`n" -ForegroundColor Green
-            }
-        } catch {
-            Write-Host "  └─ [!] Warning: Could not retrieve command line for PID $($proc.Id)" -ForegroundColor DarkYellow
-            Write-Host "      [i] Run as Administrator for complete detection.`n" -ForegroundColor DarkYellow
-        }
-    }
-    if (-not $foundInjection) { Write-Host "  [✓] CLEAN: No JVM argument injections detected in any Java process" -ForegroundColor Green }
-    Write-Host ""
 }
 
 function Get-Minecraft-Version-From-Mods($modsFolder) {
     $mcVersions = @{}; $modsScanned = 0
-    Write-Host "Analyzing mods for Minecraft version..." -ForegroundColor Cyan
+    Write-Host "┌─────────────────────────────────────────────────────────────────────────────────┐" -ForegroundColor Cyan
+    Write-Host "│  📊 ANALYZING MODS FOR MINECRAFT VERSION                                       │" -ForegroundColor Cyan
+    Write-Host "└─────────────────────────────────────────────────────────────────────────────────┘" -ForegroundColor Cyan
+    Write-Host ""
     foreach ($file in (Get-ChildItem -Path $modsFolder -Filter *.jar)) {
         try {
             $zip = [System.IO.Compression.ZipFile]::OpenRead($file.FullName)
@@ -156,24 +121,36 @@ function Get-Minecraft-Version-From-Mods($modsFolder) {
     }
     if ($mcVersions.Count -gt 0) {
         $best = $mcVersions.GetEnumerator() | Sort-Object -Property @{E={$_.Value};D=$true},@{E={$_.Key};D=$true} | Select-Object -First 1
-        Write-Host "Detected Minecraft version: $($best.Key) (from $($best.Value) out of $modsScanned mods)" -ForegroundColor Cyan
+        Write-Host "  ✅ Detected Minecraft version: $($best.Key) (from $($best.Value) out of $modsScanned mods)" -ForegroundColor Green
+        Write-Host ""
         return $best.Key
     }
     if ($process) {
         try {
             $cl = (Get-WmiObject Win32_Process -Filter "ProcessId = $($process.Id)").CommandLine
             foreach ($pat in @('versions[/\\](\d+\.\d+(?:\.\d+)?)[/\\]','-Dminecraft\.version=(\d+\.\d+(?:\.\d+)?)','-Dfabric\.gameVersion=(\d+\.\d+(?:\.\d+)?)','--version\s+(\d+\.\d+(?:\.\d+)?)')) {
-                if ($cl -match $pat) { Write-Host "Detected Minecraft version from process: $($matches[1])" -ForegroundColor Cyan; return $matches[1] }
+                if ($cl -match $pat) { 
+                    Write-Host "  ✅ Detected Minecraft version from process: $($matches[1])" -ForegroundColor Green
+                    Write-Host ""
+                    return $matches[1] 
+                }
             }
-        } catch { Write-Host "Warning: Could not read process command line" -ForegroundColor DarkYellow }
+        } catch { Write-Host "  ⚠️  Warning: Could not read process command line" -ForegroundColor DarkYellow }
     }
-    Write-Host "Could not auto-detect Minecraft version from mods." -ForegroundColor Yellow
-    $v = Read-Host "Enter your Minecraft version (e.g., 1.21, 1.20.1) or press Enter to skip"
+    Write-Host "  ⚠️  Could not auto-detect Minecraft version from mods." -ForegroundColor Yellow
+    $v = Read-Host "  ➤ Enter your Minecraft version (e.g., 1.21, 1.20.1) or press Enter to skip"
+    Write-Host ""
     return if ($v -eq '') { $null } else { $v }
 }
 
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-if ($minecraftVersion = Get-Minecraft-Version-From-Mods -modsFolder $mods) { Write-Host "Using Minecraft version: $minecraftVersion for filtering`n" -ForegroundColor Green }
+if ($minecraftVersion = Get-Minecraft-Version-From-Mods -modsFolder $mods) { 
+    Write-Host "┌─────────────────────────────────────────────────────────────────────────────────┐" -ForegroundColor Green
+    Write-Host "│  🎯 Using Minecraft version: $minecraftVersion for filtering" -ForegroundColor Green
+    Write-Host("│" + " " * 81) -ForegroundColor Green
+    Write-Host "└─────────────────────────────────────────────────────────────────────────────────┘" -ForegroundColor Green
+    Write-Host ""
+}
 
 function Get-SHA1($p) { return (Get-FileHash -Path $p -Algorithm SHA1).Hash }
 
@@ -442,10 +419,14 @@ $allModsInfo  = [System.Collections.Generic.List[object]]::new()
 $jarFiles = Get-ChildItem -Path $mods -Filter *.jar
 $spinner = @("|","/","-","\"); $totalMods = $jarFiles.Count
 
-Write-Host "Scanning $totalMods mods..." -ForegroundColor White
+Write-Host "┌─────────────────────────────────────────────────────────────────────────────────┐" -ForegroundColor Cyan
+Write-Host "│  🔍 SCANNING MODS                                                              │" -ForegroundColor Cyan
+Write-Host "└─────────────────────────────────────────────────────────────────────────────────┘" -ForegroundColor Cyan
+Write-Host ""
+
 for ($i = 0; $i -lt $jarFiles.Count; $i++) {
     $file = $jarFiles[$i]
-    Write-Host "`r[$($spinner[$i % 4])] Scanning mods: $($i+1) / $totalMods" -ForegroundColor Green -NoNewline
+    Write-Host "`r  [$($spinner[$i % 4])] Scanning: $($i+1) / $totalMods mods" -ForegroundColor Green -NoNewline
     $hash = Get-SHA1 $file.FullName
     $actualSize = $file.Length; $actualSizeKB = [math]::Round($actualSize/1KB, 2)
     $zone = Get-ZoneIdentifier $file.FullName
@@ -502,11 +483,11 @@ $tempDir = Join-Path $env:TEMP "blessedmodanalyzer"
 try {
     if (Test-Path $tempDir) { Remove-Item -Recurse -Force $tempDir }
     New-Item -ItemType Directory -Path $tempDir | Out-Null
-    Write-Host "`nScanning for cheat strings..." -ForegroundColor White
+    Write-Host "`n  🔎 Scanning for cheat strings..." -ForegroundColor White
 
     foreach ($mod in $allModsInfo) {
         $counter++
-        Write-Host "`r[$($spinner[$counter % 4])] Scanning for cheat strings: $counter / $totalMods" -ForegroundColor Magenta -NoNewline
+        Write-Host "`r  [$($spinner[$counter % 4])] Cheat scan: $counter / $totalMods mods" -ForegroundColor Magenta -NoNewline
 
         $s1=0; $s2=0; $tc=0; $obf=0; $num=0; $uni=0; $nov=0; $gib=0; $spkg=0
         try {
@@ -554,10 +535,11 @@ try {
             $verifiedMods = $verifiedMods | Where-Object { $_.FileName -ne $mod.FileName }
         }
     }
-} catch { Write-Host "`nError: $($_.Exception.Message)" -ForegroundColor Red
+} catch { Write-Host "`n  ❌ Error: $($_.Exception.Message)" -ForegroundColor Red
 } finally { if (Test-Path $tempDir) { Remove-Item -Recurse -Force $tempDir -ErrorAction SilentlyContinue } }
 
-Write-Host "`nScanning complete!`n" -ForegroundColor Green
+Write-Host "`n  ✅ Scan complete!" -ForegroundColor Green
+Write-Host ""
 
 $disallowedMods = @{
     "xeros-minimap"=@{Names=@("Xero's Minimap","Xeros Minimap","xeros-minimap","XerosMinimap","Xero's Minimap Mod")}
@@ -595,80 +577,85 @@ function Write-Card($lines, $color) {
     Write-Host ""
 }
 
-Write-Sep; Write-Host "RESULTS SUMMARY" -ForegroundColor Cyan; Write-Sep; Write-Host ""
+Write-Sep; Write-Host "📊 RESULTS SUMMARY" -ForegroundColor Cyan; Write-Sep; Write-Host ""
 
-Write-Sep Green; Write-Host "VERIFIED MODS: $($verifiedMods.Count) ✓" -ForegroundColor Green; Write-Sep Green
+Write-Sep Green; Write-Host "✅ VERIFIED MODS: $($verifiedMods.Count)" -ForegroundColor Green; Write-Sep Green
 if ($verifiedMods.Count -gt 0) {
     foreach ($mod in $verifiedMods) {
         if (($tamperedMods | Where-Object { $_.FileName -eq $mod.FileName }).Count -eq 0 -and ($cheatMods | Where-Object { $_.FileName -eq $mod.FileName }).Count -eq 0) {
             Write-Host "  ✓ " -NoNewline -ForegroundColor Green; Write-Host "$($mod.ModName) " -NoNewline -ForegroundColor White; Write-Host "($($mod.FileName))" -ForegroundColor Green
-            Write-Host "    Size: $($mod.ActualSizeKB) KB" -ForegroundColor Green
+            Write-Host "    📦 Size: $($mod.ActualSizeKB) KB" -ForegroundColor Green
         }
     }
 } else { Write-Host "  No verified mods found" -ForegroundColor Gray }
 Write-Host ""
 
-Write-Sep Yellow; Write-Host "UNKNOWN MODS: $($unknownMods.Count) ?" -ForegroundColor Yellow; Write-Sep Yellow
+Write-Sep Yellow; Write-Host "❓ UNKNOWN MODS: $($unknownMods.Count)" -ForegroundColor Yellow; Write-Sep Yellow
 if ($unknownMods.Count -gt 0) {
     foreach ($mod in $unknownMods) {
-        Write-Card @(@{text="UNKNOWN MOD";color="Yellow"}, "File: $($mod.FileName)", "Size: $($mod.FileSizeKB) KB") Yellow
-        if ($mod.ModName) { Write-Host "  ║ " -NoNewline -ForegroundColor Yellow; Write-Host "Identified as: $($mod.ModName)" -ForegroundColor Cyan }
+        Write-Card @(@{text="UNKNOWN MOD";color="Yellow"}, "📄 File: $($mod.FileName)", "💾 Size: $($mod.FileSizeKB) KB") Yellow
+        if ($mod.ModName) { Write-Host "  ║ " -NoNewline -ForegroundColor Yellow; Write-Host "🔍 Identified as: $($mod.ModName)" -ForegroundColor Cyan }
     }
 } else { Write-Host "  No unknown mods found" -ForegroundColor Gray }
 Write-Host ""
 
-Write-Sep DarkYellow; Write-Host "TAMPERED MODS: $($tamperedMods.Count) ⚠" -ForegroundColor DarkYellow; Write-Sep DarkYellow
+Write-Sep DarkYellow; Write-Host "⚠️  TAMPERED MODS: $($tamperedMods.Count)" -ForegroundColor DarkYellow; Write-Sep DarkYellow
 if ($tamperedMods.Count -gt 0) {
     foreach ($mod in $tamperedMods) {
         $sign = if ($mod.SizeDiffKB -gt 0) {"+"} else {""}
         Write-Host "  ╔══════════════════════════════════════════" -ForegroundColor DarkYellow
-        Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host "TAMPERED MOD" -ForegroundColor DarkYellow
+        Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host "⚠️  TAMPERED MOD" -ForegroundColor DarkYellow
         Write-Host "  ╠══════════════════════════════════════════" -ForegroundColor DarkYellow
-        Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host "File: $($mod.FileName)" -ForegroundColor White
-        if ($mod.ModName) { Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host "Mod: $($mod.ModName)" -ForegroundColor Magenta }
-        if ($mod.TamperReason) { Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host "Reason: $($mod.TamperReason)" -ForegroundColor Red }
-        Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host "Size: $($mod.ActualSizeKB) KB (Expected: $($mod.ExpectedSizeKB) KB)" -ForegroundColor Magenta
-        Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host "Difference: $sign$($mod.SizeDiffKB) KB" -ForegroundColor Red
+        Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host "📄 File: $($mod.FileName)" -ForegroundColor White
+        if ($mod.ModName) { Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host "🔧 Mod: $($mod.ModName)" -ForegroundColor Green }
+        if ($mod.TamperReason) { Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host "🔬 Reason: $($mod.TamperReason)" -ForegroundColor Red }
+        Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host "💾 Size: $($mod.ActualSizeKB) KB (Expected: $($mod.ExpectedSizeKB) KB)" -ForegroundColor Magenta
+        Write-Host "  ║ " -NoNewline -ForegroundColor DarkYellow; Write-Host "📏 Difference: $sign$($mod.SizeDiffKB) KB" -ForegroundColor Red
         Write-Host "  ╚══════════════════════════════════════════`n" -ForegroundColor DarkYellow
     }
 } else { Write-Host "  No tampered mods found" -ForegroundColor Gray }
 Write-Host ""
 
-Write-Sep Red; Write-Host "CHEAT MODS: $($cheatMods.Count) ⚠" -ForegroundColor Red; Write-Sep Red
+Write-Sep Red; Write-Host "🚨 CHEAT MODS: $($cheatMods.Count)" -ForegroundColor Red; Write-Sep Red
 if ($cheatMods.Count -gt 0) {
     foreach ($mod in $cheatMods) {
         $dqrkisStrings = @("CwskKkUfHQYB","HgsCDQ49KkUfHQYB","DhsnbQ0LDg0MDA","OhYHBQcOHw","EgQKDiUqRR8WChk","KjoFWRcEAx0M","Hx0GAVkcChwdDA","HSw7RQQIAQQ","BR0sFBcOGg4a","Oh0yWR0MCA")
         Write-Host "  ╔══════════════════════════════════════════" -ForegroundColor Red
-        Write-Host "  ║ " -NoNewline -ForegroundColor Red; Write-Host "CHEAT MOD DETECTED" -ForegroundColor Red
+        Write-Host "  ║ " -NoNewline -ForegroundColor Red; Write-Host "🚨 CHEAT MOD DETECTED" -ForegroundColor Red
         Write-Host "  ╠══════════════════════════════════════════" -ForegroundColor Red
-        Write-Host "  ║ " -NoNewline -ForegroundColor Red; Write-Host "File: $($mod.FileName)" -ForegroundColor White
-        if ($mod.ModName) { Write-Host "  ║ " -NoNewline -ForegroundColor Red; Write-Host "Mod: $($mod.ModName)" -ForegroundColor White }
-        if (($mod.StringsFound | Where-Object { $dqrkisStrings -contains $_ }).Count -gt 0) { Write-Host "  ║ " -NoNewline -ForegroundColor Red; Write-Host "Reason: Dqrkis Client Strings" -ForegroundColor Red }
-        Write-Host "  ║ " -NoNewline -ForegroundColor Red; Write-Host "Detected Cheat Strings:" -ForegroundColor Yellow
+        Write-Host "  ║ " -NoNewline -ForegroundColor Red; Write-Host "📄 File: $($mod.FileName)" -ForegroundColor White
+        if ($mod.ModName) { Write-Host "  ║ " -NoNewline -ForegroundColor Red; Write-Host "🔧 Mod: $($mod.ModName)" -ForegroundColor White }
+        if (($mod.StringsFound | Where-Object { $dqrkisStrings -contains $_ }).Count -gt 0) { Write-Host "  ║ " -NoNewline -ForegroundColor Red; Write-Host "💀 Reason: Dqrkis Client Strings" -ForegroundColor Red }
+        Write-Host "  ║ " -NoNewline -ForegroundColor Red; Write-Host "🔍 Detected Cheat Strings:" -ForegroundColor Yellow
         @($mod.StringsFound) | Sort-Object | ForEach-Object { Write-Host "  ║   " -NoNewline -ForegroundColor Red; Write-Host "• $_" -ForegroundColor Magenta }
         if ($mod.ExpectedSizeKB -gt 0) {
             $sign = if ($mod.SizeDiffKB -gt 0){"+"} else {""}
             Write-Host "  ║ " -NoNewline -ForegroundColor Red
-            if ($mod.SizeDiffKB -eq 0) { Write-Host "Size matches Modrinth: $($mod.ExpectedSizeKB) KB ✓" -ForegroundColor White }
+            if ($mod.SizeDiffKB -eq 0) { Write-Host "💾 Size matches Modrinth: $($mod.ExpectedSizeKB) KB ✓" -ForegroundColor White }
             else {
-    Write-Host "  ║ " -NoNewline -ForegroundColor Red
-    Write-Host "Size: $($mod.FileSizeKB) KB (Expected: $($mod.ExpectedSizeKB) KB) | " -NoNewline -ForegroundColor White
-    Write-Host "Difference: $sign$($mod.SizeDiffKB) KB" -ForegroundColor Red
-}
+                Write-Host "  ║ " -NoNewline -ForegroundColor Red
+                Write-Host "💾 Size: $($mod.FileSizeKB) KB (Expected: $($mod.ExpectedSizeKB) KB) | " -NoNewline -ForegroundColor White
+                Write-Host "📏 Difference: $sign$($mod.SizeDiffKB) KB" -ForegroundColor Red
+            }
         }
         Write-Host "  ╚══════════════════════════════════════════" -ForegroundColor Red
-Write-Host ""
+        Write-Host ""
     }
-} else { Write-Host "  No cheat mods detected ✓" -ForegroundColor Green }
+} else { Write-Host "  ✅ No cheat mods detected" -ForegroundColor Green }
 Write-Host ""
 
-Write-Sep Red; Write-Host "DISALLOWED MODS: $($disallowedFound.Count) ⚠" -ForegroundColor Red; Write-Sep Red
+Write-Sep Red; Write-Host "🚫 DISALLOWED MODS: $($disallowedFound.Count)" -ForegroundColor Red; Write-Sep Red
 if ($disallowedFound.Count -gt 0) {
-    foreach ($mod in $disallowedFound) { Write-Card @(@{text="DISALLOWED MOD DETECTED";color="Red"}, "File: $($mod.FileName)", "Mod: $($mod.ModName)") Red }
-} else { Write-Host "  No disallowed mods detected ✓" -ForegroundColor Green }
+    foreach ($mod in $disallowedFound) { Write-Card @(@{text="🚫 DISALLOWED MOD DETECTED";color="Red"}, "📄 File: $($mod.FileName)", "🔧 Mod: $($mod.ModName)") Red }
+} else { Write-Host "  ✅ No disallowed mods detected" -ForegroundColor Green }
 Write-Host ""
 
 Write-Sep
 
-Write-Host "`nPress any key to exit..." -ForegroundColor White
-$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown") 
+Write-Host ""
+Write-Host "┌─────────────────────────────────────────────────────────────────────────────────┐" -ForegroundColor Cyan
+Write-Host "│  ✨ Scan completed successfully! Press any key to exit...                       │" -ForegroundColor Cyan
+Write-Host "└─────────────────────────────────────────────────────────────────────────────────┘" -ForegroundColor Cyan
+Write-Host ""
+
+$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
