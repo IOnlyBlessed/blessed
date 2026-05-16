@@ -2,7 +2,6 @@
 $OutputEncoding = [System.Text.Encoding]::UTF8
 Clear-Host
 
-# colors
 $cyan = "`e[38;2;0;255;255m"
 $pink = "`e[38;2;255;20;147m"
 $purple = "`e[38;2;138;43;226m"
@@ -15,7 +14,6 @@ $white = "`e[38;2;230;230;230m"
 $gray = "`e[38;2;128;128;128m"
 $reset = "`e[0m"
 
-# BLESSED MOD ANALYZER ASCII - FIXED
 Write-Host @"
 ${cyan}
 ╔════════════════════════════════════════════════════════════════════════════════════════════════════╗
